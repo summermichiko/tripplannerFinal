@@ -6,7 +6,10 @@
 	<div class="aboutExplanation">
 		<h3>About</h3>
 		<p>Test Test Test and here is some more text to test out in this explanation of what about will be.  We are watching Modern Family and the dogs are playing on the couch.  Hopefully htis will be enough text to represent what the real text will look like and chums just futted!  So stink! Test Test Test and here is some more text to test out in this explanation of what about will be.  We are watching Modern Family and</p>
-		<button>Get Started!</button>
+		<div class="buttonHolder">
+			<button>Get Started!</button>
+		</div>
+		
 	</div>
 </section>
 <section class="dayAgenda">
@@ -71,6 +74,10 @@ $(document).ready(function() {
 	}
   	initialize_gmaps();
 
+  	function setMarkersVisible() {
+		marker.setVisible();
+	};
+
 	//CREATING DAYS
 	var dayNum = 1;
 	$(".addDayBtn").on("click", function(e) {
@@ -86,7 +93,8 @@ $(document).ready(function() {
 	$(".restaurantSectionUl").on("click", ".addBtn", function(e) {
 		if(dayNum >1) {
 			e.preventDefault();
-			$(".itinerary").append("<li>" + $(this).attr("value") + "</li>");	
+			$(".itinerary").append("<li>" + $(this).attr("value") + "</li>");
+			setMarkersVisible();	
 		} else {
 			alert("Create a new day to get started!");
 		}
@@ -115,7 +123,6 @@ $(document).ready(function() {
 		data.restaurants.forEach(function(restaurant) {
 			// $(".restaurantSectionUl").append("<div class='item'></div>");
 		  	$(".restaurantSectionUl").append("<div class='item'><div class='imgHolder'>" + "<img src=" + restaurant.img + ">" + "</div><h4>" + restaurant.name + "</h4><p class='itemDescription'>" + restaurant.description + "</p><button class='addBtn' value='" + restaurant.name + "'>Add</button></div>");
-		  	console.log("<button class='addBtn' value="+ restaurant.name+">Add</button>");
 		});
 	};
 	populateRestaurants();
@@ -127,6 +134,30 @@ $(document).ready(function() {
 		});
 	};
 	populateThings();
+
+	// $(".about").click(function() {
+	// 	$(".aboutSection").show();
+	// });
+
+	// $(".main").click(function() {
+	// 	$(".aboutSection").hide();
+	// });
+
+	// DayView.prototype.setMarkersVisible = function(showing) {
+	//   this.markers.forEach(function(m) {
+	//     m.setVisible(showing);
+	//   })
+	// }
+
+	//  var marker = new google.maps.Marker({
+	//     position: myLatlng
+	//   });
+	//   // Add the marker to the map by calling setMap()
+	//   marker.setMap(map);
+
+	
+
+
 }); 
 </script>
 
