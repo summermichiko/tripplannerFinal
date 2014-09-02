@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- <div class="wrapper"></div> -->
+<section class="aboutSection">
+	<div class="aboutExplanation">
+		<h3>About</h3>
+		<p>Test Test Test and here is some more text to test out in this explanation of what about will be.  We are watching Modern Family and the dogs are playing on the couch.  Hopefully htis will be enough text to represent what the real text will look like and chums just futted!  So stink! Test Test Test and here is some more text to test out in this explanation of what about will be.  We are watching Modern Family and</p>
+		<button>Get Started!</button>
+	</div>
+</section>
+<section class="dayAgenda">
+	<div class="textAgenda">
+		<div class="dayBtns">
+			<button class="addDayBtn">+</button>
+			<ul class="dayList">
+			</ul>
+		</div>
+		<h3>Day {{ dayNum }} Agenda</h3>
+		<ol class="itinerary">
+			<!-- <li>eat a cocoa puff at liliha bakery</li> -->
+		</ol>
+	</div>
+	<div id="map-canvas" style="height: 330px; width: 415px;"></div>
+</section>
+<section class="mainContent">
+	<h3 class="firstHeader">Places To Eat</h3>
+	<div class="restaurantSection">
+		<ul class="restaurantSectionUl"></ul>
+	</div>
+	<h3>Things To Do</h3>
+	<div class="thingSection">
+		<ul class="thingSectionUl"></ul>
+	</div>
+</section>
+
+
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBddYF6KwYV_xa4FJgKJSn_CwZ-a68-rZM&sensor=true"></script>
+
+<script>
+	{% autoescape false %}
+	var data = {
+		thingstodo: {{ thingstodo | json }},
+		restaurants: {{ restaurants | json }}
+	};
+	{% endautoescape %}	
+</script>
+
+<script>
+$(document).ready(function() {
+	function initialize_gmaps() {
+	  // initialize new google maps LatLng object
+	  var myLatlng = new google.maps.LatLng(21.4837543, -157.9652284);
+	  // set the map options hash
+	  var mapOptions = {
+	    center: myLatlng,
+	    zoom: 10,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  // get the maps div's HTML obj
+	  var map_canvas_obj = document.getElementById("map-canvas");
+	  // initialize a new Google Map with the options
+	  var map = new google.maps.Map(map_canvas_obj, mapOptions);
+	  // Add the marker to the map
+	  var marker = new google.maps.Marker({
+	    position: myLatlng
+	  });
+	  // Add the marker to the map by calling setMap()
+	  marker.setMap(map);
+	}
+  	initialize_gmaps();
+
+	//CREATING DAYS
+	var dayNum = 1;
+	$(".addDayBtn").on("click", function(e) {
+		e.preventDefault();
+		$(this).closest(".dayBtns").find(".dayList").append("<li class='day'>Day " + dayNum + "</li>");
+		dayNum++;
+		if (dayNum > 9) {
+			$(this).off();
+		}
+	});
+
+	//ADDING PLACE TO EAT IN ITINERARY
+	$(".restaurantSectionUl").on("click", ".addBtn", function(e) {
+		if(dayNum >1) {
+			e.preventDefault();
+			$(".itinerary").append("<li>" + $(this).attr("value") + "</li>");	
+		} else {
+			alert("Create a new day to get started!");
+		}
+	});
+
+	//ADDING THING TO DO IN ITINERARY
+	$(".thingSectionUl").on("click", ".addBtn", function(e) {
+		if(dayNum >1) {
+			e.preventDefault();
+			$(".itinerary").append("<li>" + $(this).attr("value") + "</li>");
+		} else {
+			alert("Create a new day to get started!");
+		}
+	});
+
+	// <div class='item'>
+	// 	<div class='imgHolder'>
+	// 		<img src=restaurant.img>
+	// 	</div>
+	// 	<h4>restaurant.name</h4>
+	// 	<p class='itemDescription'>restaurant.description</p>
+	// 	<button class='addBtn'>Add</button>
+	// </div>
+
+	function populateRestaurants() {
+		data.restaurants.forEach(function(restaurant) {
+			// $(".restaurantSectionUl").append("<div class='item'></div>");
+		  	$(".restaurantSectionUl").append("<div class='item'><div class='imgHolder'>" + "<img src=" + restaurant.img + ">" + "</div><h4>" + restaurant.name + "</h4><p class='itemDescription'>" + restaurant.description + "</p><button class='addBtn' value='" + restaurant.name + "'>Add</button></div>");
+		  	console.log("<button class='addBtn' value="+ restaurant.name+">Add</button>");
+		});
+	};
+	populateRestaurants();
+
+	function populateThings() {
+		data.thingstodo.forEach(function(thing) {
+			// $(".restaurantSectionUl").append("<div class='item'></div>");
+		  	$(".thingSectionUl").append("<div class='item'><div class='imgHolder'>" + "<img src=" + thing.img + ">" + "</div><h4>" + thing.name + "</h4><p class='itemDescription'>" + thing.description + "</p><button class='addBtn' value='" + thing.name + "'>Add</button></div>");
+		});
+	};
+	populateThings();
+}); 
+</script>
+
+
+{% endblock %}
+

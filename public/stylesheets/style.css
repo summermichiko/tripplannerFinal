@@ -1,8 +1,287 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+header {
+	background-color: #303030;
+	height: 60px;
+	width: 100%;
 }
 
 a {
-  color: #00B7FF;
+	cursor: pointer;
+	float: left;
+	color: #FFF;
+	line-height: 60px;
+	margin-right: 40px;
+	font-size: 17px;
+	font-weight: 300;
+	font-family: Roboto;
+	text-decoration: none;
 }
+
+.main {
+	margin-left: 150px;
+}
+
+/*.fixed {  
+    position: fixed;     
+    top: 0;      
+    width: 100%;     
+    z-index: 100;  
+} */
+
+.aboutSection {
+	height: 400px;
+	width: 100%;
+}
+
+.aboutExplanation {
+	margin-top: 50px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 580px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.aboutExplanation h3 {
+	text-align: center;
+}
+
+.aboutExplanation p {
+	margin-top: 15px;
+	font-family: Roboto;
+	font-weight: 300;
+	font-size: 17px;
+	color: #848484;
+	line-height: 25px;
+	text-align: justify;
+	margin-bottom: 30px;
+}
+
+.aboutExplanation button {
+	margin-bottom: 40px;
+	width: 130px;
+	height: 40px;
+	cursor: pointer;
+	background-color: #20A3C7;
+	color: #FFF;
+	font-family: Roboto;
+	font-size: 17px;
+}
+
+.aboutExplanation button:hover {
+	background-color: #61D2E8;
+}
+
+.dayAgenda {
+	height: 360px;
+	background-color: #FFF;
+	padding-left: 150px;
+	padding-right: 150px;
+}
+
+.textAgenda {
+	float: left;
+}
+
+.dayBtns {
+	padding-top: 30px;
+	padding-bottom: 25px;
+}
+
+.addDayBtn {
+	float: left;
+	height: 30px;
+	width: 30px;
+	border-radius: 3px;
+	border: none;
+	margin-right: 5px;
+	background-color: #F4F4F4;
+	font-family: Roboto;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.dayList {
+	width: 640px;
+}
+
+.day {
+	float: left;
+	font-family: Roboto;
+	color: #848484;
+	font-weight: 300;
+	font-size: 17px;
+	margin-right: 5px;
+	margin-left: 5px;
+	border: 1px solid #848484;
+	padding: 7px;
+	border-radius: 3px;
+}
+
+h3 {
+	font-family: Roboto;
+	font-weight: 300;
+	color: #20A3C7;
+	font-size: 25px;
+	margin-top: 30px;
+}
+
+.itinerary {
+	font-family: Roboto;
+	font-weight: 300;
+	color: #848484;
+	font-size: 17px;
+	list-style: decimal;
+	margin-left: 23px;
+	margin-top: 17px;
+}
+
+.itinerary li {
+	line-height: 23px;
+}
+
+#map-canvas {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	float: right;
+}
+
+.mainContent {
+	background-color: #F4F4F4;
+	padding-right: 150px;
+	padding-left: 150px;
+	height: 4630px;
+	position: relative;
+	max-width: 1200px;
+}
+
+.mainContent h3 {
+	color: black;
+}
+
+.firstHeader {
+	padding-top: 45px;
+}
+
+.item {
+	width: 312px;
+	margin: 40px 20px;
+	display: block;
+	float: left;
+	border-radius: 2px;
+	background-color: #FFF;
+	border: 1px solid #ddd;
+}
+
+.imgHolder img {
+	height: 200px;
+	width: 312px;
+	background-color: blue;
+}
+
+h4 {
+	font-family: Roboto;
+	margin-left: 15px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 30px;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.itemDescription {
+	font-family: Roboto;
+	margin-left: 15px;
+	font-weight: 300;
+	font-size: 17px;
+	color: #848484;
+	margin-bottom: 20px;
+	padding-left: 5px;
+	padding-right: 30px;
+	height: 35px;
+}
+
+hr {
+	border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+button {
+	border: none;
+	outline: none;
+}
+
+.addBtn {
+	font-family: Roboto;
+	font-weight: 300;
+	font-size: 17px;
+	color: #FFF;
+	background-color: #20A3C7;
+	width: 275px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 17px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	cursor: pointer;
+}
+
+.addBtn:hover {
+	background-color: #61D2E8;
+}
+
+
+
+
+
+
+
